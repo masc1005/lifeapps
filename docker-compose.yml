@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  inventory-app:
+    build:
+      context: ./inventory
+      dockerfile: Dockerfile
+    volumes:
+      - ./inventory:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mongodb+srv://leoni:1234@lifeapps.4gwyxlu.mongodb.net/lifeapps_inventory?retryWrites=true&w=majority
+    depends_on:
+      - orders-app
+    networks:
+      app-network:
+        aliases:
+          - inventory
+
+  orders-app:
+    build:
+      context: ./orders
+      dockerfile: Dockerfile
+    volumes:
+      - ./orders:/app
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=mongodb+srv://leoni:1234@lifeapps.4gwyxlu.mongodb.net/lifeapps_orders?retryWrites=true&w=majority
+      - INVENTORY=http://inventory:3000
+    networks:
+      app-network:
+        aliases:
+          - orders
+networks:
+  app-network:
+    driver: bridge
