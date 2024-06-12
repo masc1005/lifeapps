@@ -12,21 +12,7 @@ model Product {
   nome        String
   price       Float
   description String
-  order_id    String
   quantity    Int    @default(1000)
 
   @@map("products")
-}
-
-model OrderProduct {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  product_id String
-  order_id   String
-  status     Status
-}
-
-enum Status {
-  RECIVED
-  APPROVED
-  DENIED
 }

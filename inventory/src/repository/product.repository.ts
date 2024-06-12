@@ -10,6 +10,10 @@ export class ProductRepository {
 
   createProduct = async (data: Product) => {
     delete data?.id
+
+    if (!data) return undefined
+
+
     const create = await this.dbClient.product.create({
       data: {
         ...data
