@@ -1,10 +1,3 @@
-# Desafio LifeApps!
-
-### Introdução
-
-Esse de código é um microserviço baseado nos requisitos do desafio técnico para uma vaga da empresa LifeApps.
-
-
 ### Como executar?
 Foi criado um docker-compose.yml por fora das pastas `inventory` e `orders`, é necessário apenas executar o comando `docker compose up` ou `docker-compose up` para que sejam startadas a duas aplicações.
 
